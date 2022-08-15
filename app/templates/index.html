@@ -1,0 +1,13 @@
+<title>Home page</title>
+
+<h1>Enter URL to create a shortened link</h1>
+
+<form method="post">
+    <label for="url">Your URL:</label>
+    <input type="text" name="url">
+    <input type="submit" value="Submit">
+</form>
+
+{% for message in get_flashed_messages() %}
+    {{ message }}
+{% endfor %}
