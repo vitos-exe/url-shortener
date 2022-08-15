@@ -2,16 +2,19 @@ from flask import (Flask, redirect, request, render_template, flash, abort, url_
 from os.path import join, exists
 import db
 
+#creating an app instance and configuring it 
 app = Flask(__name__)
-
 app.config['DATABASE'] = join(app.root_path, 'urls.db')
 app.config['SECRET_KEY'] = 'dev'
 
+#creates new database if it is missing
 if not(exists(app.config['DATABASE'])):
     db.init_db(join(app.root_path, 'schema.sql'))
 
+#adds function that closes database after completing request
 app.teardown_appcontext(db.close_db)
 
+#view for homepage, which returns its template as response or creates a shortened new URL(if one for inputed doesn't exist) 
 @app.route('/', methods = ('GET', 'POST'))
 def home_page():
     if request.method == 'POST':
@@ -37,6 +40,7 @@ def home_page():
 
     return render_template('home.html')
 
+#view for redirecting user to inputed shortened URL(if exists)
 @app.route('/<shortened>')
 def redirect_url(shortened):
     database = db.get_db()
@@ -49,5 +53,6 @@ def redirect_url(shortened):
         abort(404)
     return redirect(original[0])
 
+#if script is executed then starts the app
 if __name__ == '__main__':
     app.run(debug=True)
