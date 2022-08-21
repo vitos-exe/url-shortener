@@ -32,9 +32,9 @@ def home_page():
                 (shortened, url)
             )
             database.commit()
-            result = 'URL was created: ' + shortened
+            result = 'URL was created: ' + url_for('home_page', _external = True) + shortened
         else:
-            result = 'This URL is already created: ' + fetched[0]
+            result = 'This URL is already created: ' + url_for('home_page', _external = True) + fetched[0]
         flash(result)
         return redirect(url_for('home_page'))
 
@@ -55,4 +55,4 @@ def redirect_url(shortened):
 
 #if script is executed then starts the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
