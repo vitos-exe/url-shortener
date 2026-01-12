@@ -17,3 +17,5 @@ spec:
       - image: ghcr.io/vitos-exe/url-shortener:master
         imagePullPolicy: Always
         name: url-shortener
+        ports:
+          - containerPort: 5000
