@@ -1,14 +1,8 @@
 [project]
 name = "url-shortener"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0.0"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = [
-    "flask>=3.1.0",
-]
-
-[dependency-groups]
-dev = [
-    "ipython>=8.31.0",
+    "flask>=3.1.2",
 ]
