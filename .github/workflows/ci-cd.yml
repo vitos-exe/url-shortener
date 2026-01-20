@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build and publish Docker image & redeploy on remote K8s cluster
 
 on:
   push:
